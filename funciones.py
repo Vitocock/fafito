@@ -1,4 +1,6 @@
 import requests
+import clases
+
 #https://developers.themoviedb.org/3/getting-started/introduction
 API_IMAGES = "http://image.tmdb.org/t/p/w500/"
 API_KEY = "c4862ec57819cb41b585c3c99130f45b"
@@ -15,5 +17,34 @@ def buscarDetalles(id, mediaType):
 
   return res.json()
 
-def formatearContenido(contenido): 
-  print("HOla")
+def crearResultado(resultados):
+  series = []
+  peliculas = []
+  for resultado in resultados:
+    if resultado["media_type"] == "tv":
+      try:
+        nombre = resultado["name"]
+      except:
+        nombre = resultado["original_name"]
+      id = resultado["id"]
+      fecha = resultado["first_air_date"] 
+      categorias = clases.Categorias(resultado["genre_ids"])
+      serie = clases.Serie(id, nombre, fecha, categorias)
+      series.append(serie)
+    else:
+      try:
+        nombre = resultado["title"]
+      except:
+        nombre = resultado["original_title"]
+      id = resultado["id"]
+      fecha = resultado["release_date"] 
+      categorias = clases.Categorias(resultado["genre_ids"])
+      pelicula = clases.Pelicula(id, nombre, fecha, categorias)
+      peliculas.append(pelicula)
+  
+  resultadosObj = clases.Resultados(peliculas, series)
+  
+  return resultadosObj
+
+
+

@@ -1,33 +1,34 @@
-class Categoria:
-    def __init__(self, nombreCategoria, id):                     
-        self.nombreCategoria = nombreCategoria
-        self.id = id
+class Categorias:
+    def __init__(self, ids):                     
+        self.ids = ids
 
 class Pelicula:                                                                                        
-    def __init__(self, id, nombrePeli, fechaPeli, categorias):        
+    def __init__(self, id, nombre, fecha, categorias):        
         self.categorias = categorias
         self.id = id                                                                                            
-        self.nombrePeli = nombrePeli
-        self.fechaPeli = fechaPeli
+        self.nombre = nombre
+        self.fecha = fecha
     
 class Persona:
-    def __init__(self, id, nombreActor,nacionalidadActor):                                 
+    def __init__(self, id, nombre, nacionalidad):                                 
         self.id = id
-        self.nombreActor = nombreActor
-        self.nacionalidadActor = nacionalidadActor
+        self.nombre = nombre
+        self.nacionalidad = nacionalidad
 
 
 class Plataforma:
-    def __init__(self, id,nombrePlataforma):                                        
+    def __init__(self, id, nombre):                                        
         self.id = id
-        self.nombrePlataforma = nombrePlataforma
+        self.nombre = nombre
 
 
 #Series#
 class Serie:
-    def __init__(self, id, nombreSerie, fechaSerie):                                                          
-        self.nombreSerie = nombreSerie
-        self.fechaSerie = fechaSerie
+    def __init__(self, id, nombre, fecha, categorias):                                                          
+        self.id = id
+        self.nombre = nombre
+        self.fecha = fecha
+        self.categorias = categorias 
 
         
 #Estrenos#
@@ -37,11 +38,12 @@ class Estrenos:
         self.series = series
 
 class Resultados:
-    def __init__(self, resultados):
-        self.resultados = resultados
+    def __init__(self,  peliculas, series):
+        self. peliculas =  peliculas
+        self.series = series    
 
 class Usuario:
-    def __init__(self, contrasena, username, favoritos):
+    def __init__(self, username, password, coleccion):
         self.username = username
-        self.contrasena = contrasena
-        self.favoritos = favoritos
+        self.password = password
+        self.coleccion = coleccion

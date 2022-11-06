@@ -1,0 +1,14 @@
+{
+  "usuarios": [
+    {
+      "username": "Tilin", 
+      "password": "hola", 
+      "coleccion": [
+        {
+          "id": 123, 
+          "mediaType": "tv"
+        }
+      ]
+    }
+  ]
+}
