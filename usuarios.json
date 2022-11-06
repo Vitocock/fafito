@@ -1,14 +1,17 @@
 {
-  "usuarios": [
-    {
-      "username": "Tilin", 
-      "password": "hola", 
-      "coleccion": [
-        {
-          "id": 123, 
-          "mediaType": "tv"
-        }
-      ]
-    }
-  ]
+  "usuarios": [{
+    "username": "Tilin",
+    "password": "hola",
+    "coleccion": [{
+      "id": 123,
+      "mediaType": "tv"
+    }]
+  }, {
+    "username": "vmmc",
+    "password": "hola",
+    "coleccion": [{
+      "mediaType": "pelicula",
+      "id": 12345
+    }]
+  }]
 }

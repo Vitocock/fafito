@@ -29,7 +29,7 @@ def agregarAColeccion(contenido, username):
   for usuario in range(len(usuarios)):
     if usuarios[usuario]["username"] == username:
       if isinstance(contenido, clases.Pelicula):
-        mediaType = "pelicula"
+        mediaType = "movie"
       else: 
         mediaType = "tv"
 
