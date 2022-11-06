@@ -46,5 +46,21 @@ def crearResultado(resultados):
   
   return resultadosObj
 
+def mostrarResultados(resultados):
+  peliculas = resultados.peliculas
+  series = resultados.series
 
+  print("Peliculas: ")
+  for pelicula in peliculas:
+    print(f"{pelicula.nombre} / {pelicula.fecha} ")
+  
+  print("Series: ")
+  for serie in series:
+    print(f"{serie.nombre} / {serie.fecha} ")
+  
 
+query = "dragonball" 
+resultados = buscarPalabra(query)
+resultados = crearResultado(resultados["results"])
+
+mostrarResultados(resultados)

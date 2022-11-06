@@ -21,8 +21,6 @@ class Plataforma:
         self.id = id
         self.nombre = nombre
 
-
-#Series#
 class Serie:
     def __init__(self, id, nombre, fecha, categorias):                                                          
         self.id = id
@@ -30,8 +28,6 @@ class Serie:
         self.fecha = fecha
         self.categorias = categorias 
 
-        
-#Estrenos#
 class Estrenos:
     def __init__(self, peliculas, series):                        
         self.peliculas = peliculas

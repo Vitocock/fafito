@@ -40,3 +40,4 @@ def agregarAColeccion(contenido, username):
   archivo.close()
 
   return True
+
