@@ -1,6 +1,18 @@
 import json
 import clases
 
+def login(username, password):
+  archivo = open("usuarios.json")
+  archivoJson = json.load(archivo)
+  usuarios = archivoJson["usuarios"]
+
+  for usuario in usuarios: # Verificar que el usuario no existe
+    if usuario["username"] == username and usuario["password"] == password:
+      archivo.close()
+      return usuario
+  archivo.close()
+  return False
+
 def registrar(username, password):
   archivo = open("usuarios.json")
   archivoJson = json.load(archivo)
@@ -17,7 +29,7 @@ def registrar(username, password):
   json.dump(archivoJson, archivo)
   archivo.close()
 
-  return True
+  return login(username, password)
 
 def agregarAColeccion(contenido, username):
   archivo = open("usuarios.json")

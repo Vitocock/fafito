@@ -59,8 +59,3 @@ def mostrarResultados(resultados):
     print(f"{serie.nombre} / {serie.fecha} ")
   
 
-query = "dragonball" 
-resultados = buscarPalabra(query)
-resultados = crearResultado(resultados["results"])
-
-mostrarResultados(resultados)

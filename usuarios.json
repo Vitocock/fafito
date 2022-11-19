@@ -1,17 +1,1 @@
-{
-  "usuarios": [{
-    "username": "Tilin",
-    "password": "hola",
-    "coleccion": [{
-      "id": 123,
-      "mediaType": "tv"
-    }]
-  }, {
-    "username": "vmmc",
-    "password": "hola",
-    "coleccion": [{
-      "mediaType": "pelicula",
-      "id": 12345
-    }]
-  }]
-}
+{"usuarios": [{"username": "Tilin", "password": "hola", "coleccion": [{"id": 123, "mediaType": "tv"}]}, {"username": "vmmc", "password": "hola", "coleccion": [{"mediaType": "pelicula", "id": 12345}]}, {"username": "dis", "password": "natz", "coleccion": []}, {"username": "Floyd", "password": "Jorge", "coleccion": []}]}
