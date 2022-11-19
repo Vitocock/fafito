@@ -52,4 +52,5 @@ while True:
   
   os.system("cls")
   if opcion == 1:
-    print("")  
+    busqueda = str(input("Buscar: "))
+    
