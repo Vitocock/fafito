@@ -53,3 +53,15 @@ def agregarAColeccion(contenido, username):
 
   return True
 
+def getFavoritos(username): 
+  archivo = open("usuarios.json")
+  archivoJson = json.load(archivo)
+  usuarios = archivoJson["usuarios"]
+
+  for usuario in range(len(usuarios)):
+    if usuarios[usuario]["username"] == username:
+      archivo.close()
+      return usuarios[usuario]["coleccion"] 
+  
+  archivo.close()
+  return []

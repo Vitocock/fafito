@@ -17,10 +17,10 @@ class Persona:
 
 
 class Plataforma:
-    def __init__(self, id, nombre):                                        
+    def __init__(self, id, nombre, url):                                        
         self.id = id
         self.nombre = nombre
-
+        self.url = url
 class Serie:
     def __init__(self, id, nombre, fecha, categorias):                                                          
         self.id = id
@@ -28,14 +28,9 @@ class Serie:
         self.fecha = fecha
         self.categorias = categorias 
 
-class Estrenos:
-    def __init__(self, peliculas, series):                        
-        self.peliculas = peliculas
-        self.series = series
-
 class Resultados:
-    def __init__(self,  peliculas, series):
-        self. peliculas =  peliculas
+    def __init__(self, peliculas = [], series = []):
+        self. peliculas = peliculas
         self.series = series    
 
 class Usuario:
@@ -43,3 +38,9 @@ class Usuario:
         self.username = username
         self.password = password
         self.coleccion = coleccion
+
+class Cine:
+    def init(self,nombre,tipo,funciones):
+        self.nombre= nombre
+        self.tipo= tipo
+        self.funciones = funciones
