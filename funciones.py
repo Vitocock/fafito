@@ -1,5 +1,8 @@
 import requests
 import clases
+import pandas as pd
+import matplotlib.pyplot as plt
+import json
 
 #https://developers.themoviedb.org/3/getting-started/introduction
 API_IMAGES = "http://image.tmdb.org/t/p/w500/"
@@ -93,35 +96,71 @@ def getId2(id,mediatype,):         #obtiene id de imbd para utilizarlo con la se
   return res.json()
 
 def PlataformaRes(id):    #entrega de un json por parte de la api
-    url = f"https://watchmode.p.rapidapi.com/title/{id}/sources/"
+  url = f"https://watchmode.p.rapidapi.com/title/{id}/sources/"
 
-    headers = {
-        "regions": "US",
-        "X-RapidAPI-Key": "5645de1cdfmsh6f1599cb7c8d9a8p16d7d0jsne1f4c90a392e",
-        "X-RapidAPI-Host": "watchmode.p.rapidapi.com"
-    }
+  headers = {
+    "regions": "US",
+    "X-RapidAPI-Key": "5645de1cdfmsh6f1599cb7c8d9a8p16d7d0jsne1f4c90a392e",
+    "X-RapidAPI-Host": "watchmode.p.rapidapi.com"
+  }
 
-    response = requests.request("GET", url, headers=headers)
-    return response.json()
+  response = requests.request("GET", url, headers=headers)
+  return response.json()
 
 def Plataforma(id):             #entrega la lista de plataformas junto a la url 
-    res = PlataformaRes(id)
+  res = PlataformaRes(id)
+  NPlat = []
+  nombres = []
+  for res in res:
+    nombre = res["name"]
+    id2 = res["source_id"]
+    url = res["web_url"]
+    if not (nombre in nombres):
+      Plataforma = clases.Plataforma(id2,nombre,url)
+      NPlat.append(Plataforma)
+      nombres.append(nombre)
 
-    NPlat = []
-    for res in res:
-        nombre = res["name"]
-        id2 = res["source_id"]
-        url = res["web_url"]
-        Plataforma = clases.Plataforma(id2,nombre,url)
-        NPlat.append(Plataforma)
+  for Plataforma in NPlat:
+    print(f"{Plataforma.nombre},{Plataforma.url}")
 
-    url = ""
-    for Plataforma in NPlat:
-      if Plataforma.url != url:
-        print(f"{Plataforma.nombre},{Plataforma.url}")
-      url = Plataforma.url
-        
+  return NPlat      
+      
 def buscarPlataforma(id, mediatype):  #busca la plataforma
-    res2 = getId2(id, mediatype)
+  res2 = getId2(id, mediatype)
 
-    Plataforma(res2['imdb_id'])
+  plataformas = Plataforma(res2['imdb_id'])
+  
+  return plataformas
+
+def graficoPlat():
+  archivo = open("usuarios.json")
+  archivoJson = json.load(archivo)
+  archivo.close()
+  usuarios = archivoJson["usuarios"]
+
+  plataformas = {}
+  for usuario in range(len(usuarios)):
+    platGuardadas = usuarios[usuario]["plataformas"]
+    for plataforma in platGuardadas:
+      try:
+        plataformas[plataforma] += platGuardadas[plataforma]
+      except: 
+        plataformas[plataforma] = platGuardadas[plataforma]
+
+  plt.barh(*zip(*plataformas.items()))
+  plt.title("Plataformas")
+  plt.show()
+
+  lista = []
+  for plataforma in plataformas:
+    lista.append({ "Plataforma" : plataforma, "Frecuencia" : plataformas[plataforma] })
+  
+  df = pd.DataFrame(lista)
+  df.to_csv('plataformas.csv', index=False, header=True)
+
+def verEstadisticas():
+  df = pd.read_csv("plataformas.csv")
+  media = df["Frecuencia"].mean()
+  moda = df["Frecuencia"].mode()
+  
+  print(f"Media: {media}\nModa: {moda}")

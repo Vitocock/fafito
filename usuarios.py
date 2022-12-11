@@ -1,5 +1,6 @@
 import json
 import clases
+from funciones import buscarPlataforma
 
 def login(username, password):
   archivo = open("usuarios.json")
@@ -24,7 +25,7 @@ def registrar(username, password):
   archivo.close()
 
   archivo = open("usuarios.json", "w")
-  usuario = clases.Usuario(username, password, []) 
+  usuario = clases.Usuario(username, password, [], {}) 
   archivoJson["usuarios"].append(usuario.__dict__)
   json.dump(archivoJson, archivo)
   archivo.close()
@@ -45,6 +46,16 @@ def agregarAColeccion(contenido, username):
       else: 
         mediaType = "tv"
 
+      plataformas = buscarPlataforma(contenido.id, mediaType) #[PLAT, PLAT]
+      platGuardadas = usuarios[usuario]["plataformas"] #{}
+      for plataforma in plataformas:
+        nombre = plataforma.nombre
+        try:
+          platGuardadas[nombre] += 1
+        except:
+          platGuardadas[nombre] = 1
+          
+      usuarios[usuario]["plataformas"] = platGuardadas
       usuarios[usuario]["coleccion"].append({ "mediaType" : mediaType, "id" : contenido.id })
 
   archivoJson["usuarios"] = usuarios

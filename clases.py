@@ -34,7 +34,8 @@ class Resultados:
         self.series = series    
 
 class Usuario:
-    def __init__(self, username, password, coleccion):
+    def __init__(self, username, password, coleccion, plataformas):
+        self.plataformas = plataformas
         self.username = username
         self.password = password
         self.coleccion = coleccion

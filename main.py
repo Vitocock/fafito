@@ -38,7 +38,6 @@ else:
     else:
       break 
 
-                              ########    BUSQUEDA    ######### 
 os.system("cls")
 estrenos = clases.Resultados()
 resultados = clases.Resultados()
@@ -49,6 +48,7 @@ while True:
   Ver estrenos [2]
   Ver favoritos [3]
   Guardar en favoritos [4]
+  Ver estadisticas [5]
   Salir [0]
   """)
   opcion = int(input("--> "))
@@ -81,7 +81,6 @@ while True:
       mostrarDetalles(detalles, mediaType)
       buscarPlataforma(id, mediaType)
 
-
   elif opcion == 4:
     id = int(input("Ingrese la id del contenido: "))
     guardado = False
@@ -110,7 +109,10 @@ while True:
 
     except:
         print("Ha ocurrido un error. Intente realizar una busqueda antes de agregar algo a la su coleccion...")    
-    
+  
+  elif opcion == 5:
+    verEstadisticas()
+    graficoPlat()
 
 
   elif opcion == 0:
